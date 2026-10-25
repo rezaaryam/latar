@@ -1,0 +1,20 @@
+{
+  "name": "latar",
+  "version": "1.0.0",
+  "description": "Living WebGL backgrounds in one custom element: mesh, aurora, contour, fog, and dots. About 8 KB, with a CSS fallback.",
+  "main": "src/latar.js",
+  "files": ["src"],
+  "scripts": {
+    "start": "npx --yes serve docs",
+    "sync": "node scripts/sync-docs.js",
+    "test": "node --test"
+  },
+  "devDependencies": {
+    "playwright": "^1.48.0"
+  },
+  "keywords": ["webgl", "shader", "background", "gradient", "aurora", "custom-element", "web-components", "hero"],
+  "author": "Reza Arya Maulana",
+  "license": "MIT",
+  "homepage": "https://rezaaryam.github.io/latar/",
+  "repository": { "type": "git", "url": "https://github.com/rezaaryam/latar.git" }
+}

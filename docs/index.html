@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>latar · Living WebGL backgrounds in one tag</title>
+<meta name="description" content="Five living WebGL backgrounds in one tiny custom element: mesh, aurora, contour, fog, and dots. About 8 KB, a CSS fallback, and it pauses itself when nobody is watching.">
+<meta name="theme-color" content="#09090b">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3CradialGradient id='g' cx='30%25' cy='30%25'%3E%3Cstop offset='0' stop-color='%23ff7a59'/%3E%3Cstop offset='.6' stop-color='%233b8f8a'/%3E%3Cstop offset='1' stop-color='%230f2f33'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='9' fill='url(%23g)'/%3E%3C/svg%3E">
+<link rel="preload" href="fonts/instrument-serif-latin-400-italic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<a class="skip" href="#playground">Skip to the playground</a>
+
+<!-- ================= HERO ================= -->
+<header class="hero" id="hero" data-tone="dark">
+  <latar-bg id="heroBg" preset="aurora" interactive></latar-bg>
+  <nav class="nav wrap" aria-label="Main">
+    <a class="logo" href="./" aria-label="latar home"><span class="logo-dot" aria-hidden="true"></span>latar</a>
+    <div class="nav-links">
+      <a href="#playground">Playground</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#usage">Usage</a>
+      <a class="nav-gh" href="https://github.com/rezaaryam/latar" aria-label="Source on GitHub">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+      </a>
+    </div>
+  </nav>
+
+  <div class="hero-body wrap">
+    <p class="eyebrow">v1.0.0 · about 8 KB · WebGL with a CSS fallback</p>
+    <h1>Backgrounds that <em>breathe.</em></h1>
+    <p class="lede">Five living WebGL backgrounds in one tiny custom element. Drop in a tag, pick a look, and it quietly pauses itself whenever nobody is watching.</p>
+    <div class="cta">
+      <a class="btn solid" href="#playground">Open the playground</a>
+      <button class="btn glass copy" type="button" data-copy='&lt;latar-bg preset="aurora"&gt;&lt;/latar-bg&gt;'>
+        <code>&lt;latar-bg preset="aurora"&gt;</code>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg>
+        <span class="sr">Copy</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="hero-foot wrap">
+    <div class="switch" role="radiogroup" aria-label="Hero background" id="heroSwitch"></div>
+    <p class="hint"><span class="hint-dot" aria-hidden="true"></span>Move your cursor. The light follows.</p>
+  </div>
+</header>
+
+<main>
+  <!-- ================= PLAYGROUND ================= -->
+  <section class="sec wrap" id="playground" aria-labelledby="h-play">
+    <div class="sec-h">
+      <p class="num">01</p>
+      <h2 id="h-play">Make it <em>yours.</em></h2>
+      <p class="sec-lede">Every slider is an attribute. When it looks right, copy the tag or save a wallpaper at full resolution.</p>
+    </div>
+
+    <div class="play">
+      <div class="play-stage">
+        <div class="preview" id="preview">
+          <latar-bg id="playBg" preset="mesh" interactive></latar-bg>
+          <span class="preview-tag" id="previewTag">mesh</span>
+        </div>
+        <div class="out">
+          <pre class="code" id="code"></pre>
+          <div class="out-actions">
+            <button class="btn line" type="button" id="copyCode">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg>Copy tag
+            </button>
+            <div class="wall">
+              <span class="select"><select id="wallSize" aria-label="Wallpaper size">
+                <option value="2560x1440">Desktop 2560 × 1440</option>
+                <option value="3840x2160">4K 3840 × 2160</option>
+                <option value="1290x2796">Phone 1290 × 2796</option>
+              </select></span>
+              <button class="btn solid" type="button" id="saveWall">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14"/></svg>Save wallpaper
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <form class="controls" id="controls" onsubmit="return false" aria-label="Background settings">
+        <fieldset>
+          <legend>Look</legend>
+          <div class="presets" id="presetPick" role="radiogroup" aria-label="Preset"></div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Colors</legend>
+          <div class="colors" id="colors"></div>
+          <div class="palettes" id="palettes" aria-label="Ready-made palettes"></div>
+        </fieldset>
+
+        <fieldset class="sliders">
+          <legend>Motion and texture</legend>
+          <label class="range"><span>Speed <output data-for="speed"></output></span><input type="range" id="speed" min="0" max="3" step="0.05"></label>
+          <label class="range"><span>Scale <output data-for="scale"></output></span><input type="range" id="scale" min="0.4" max="2.5" step="0.05"></label>
+          <label class="range"><span>Intensity <output data-for="intensity"></output></span><input type="range" id="intensity" min="0.2" max="2" step="0.05"></label>
+          <label class="range"><span>Grain <output data-for="grain"></output></span><input type="range" id="grain" min="0" max="0.2" step="0.005"></label>
+          <label class="toggle"><input type="checkbox" id="interactive" checked><span>Follows the pointer</span></label>
+        </fieldset>
+      </form>
+    </div>
+  </section>
+
+  <!-- ================= GALLERY ================= -->
+  <section class="sec wrap" id="gallery" aria-labelledby="h-gallery">
+    <div class="sec-h">
+      <p class="num">02</p>
+      <h2 id="h-gallery">Five <em>moods.</em></h2>
+      <p class="sec-lede">Each one is a single fragment shader, tuned to look good with any four colors you give it.</p>
+    </div>
+    <div class="bento" id="bento"></div>
+  </section>
+
+  <!-- ================= USAGE ================= -->
+  <section class="sec wrap" id="usage" aria-labelledby="h-usage">
+    <div class="sec-h">
+      <p class="num">03</p>
+      <h2 id="h-usage">Two lines, <em>done.</em></h2>
+      <p class="sec-lede">No build step, no framework. The element fills its nearest positioned parent and stays behind your content.</p>
+    </div>
+    <ol class="steps">
+      <li>
+        <h3>Load the script</h3>
+        <pre class="code" data-lang="html">&lt;script src="https://rezaaryam.github.io/latar/latar.js"&gt;&lt;/script&gt;</pre>
+      </li>
+      <li>
+        <h3>Put it behind anything</h3>
+        <pre class="code" data-lang="html">&lt;section style="position: relative"&gt;
+  &lt;latar-bg preset="fog" colors="#0c0a09 #6b3f2a #e8964e #fbe9c8"&gt;&lt;/latar-bg&gt;
+  &lt;h1 style="position: relative"&gt;Hello&lt;/h1&gt;
+&lt;/section&gt;</pre>
+      </li>
+      <li>
+        <h3>Or drive it from JavaScript</h3>
+        <pre class="code" data-lang="js">const bg = Latar.mount(document.querySelector(".hero"), { preset: "aurora", interactive: true });
+bg.set({ colors: ["#04070f", "#3cf0b0", "#4aa8ff", "#c8ff7a"], speed: 0.6 });
+const png = await bg.snapshot(2560, 1440);  // a Blob, ready to download</pre>
+      </li>
+    </ol>
+
+    <div class="api">
+      <table>
+        <caption>Attributes</caption>
+        <thead><tr><th scope="col">Attribute</th><th scope="col">Default</th><th scope="col">What it does</th></tr></thead>
+        <tbody>
+          <tr><td><code>preset</code></td><td>mesh</td><td><code>mesh</code>, <code>aurora</code>, <code>contour</code>, <code>fog</code>, or <code>dots</code>.</td></tr>
+          <tr><td><code>colors</code></td><td>per preset</td><td>Four colors, separated by spaces or commas. The first is the base.</td></tr>
+          <tr><td><code>speed</code></td><td>1</td><td>0 freezes time; 4 is fast.</td></tr>
+          <tr><td><code>scale</code></td><td>1</td><td>Zoom of the pattern, 0.25 to 4.</td></tr>
+          <tr><td><code>intensity</code></td><td>1</td><td>How strong the effect is against the base color.</td></tr>
+          <tr><td><code>grain</code></td><td>0.045</td><td>Film grain on top. Hides banding on cheap screens.</td></tr>
+          <tr><td><code>interactive</code></td><td>off</td><td>The pattern bends toward the pointer.</td></tr>
+          <tr><td><code>resolution</code></td><td>per preset</td><td>Render scale. Soft looks render at half size and nobody can tell.</td></tr>
+          <tr><td><code>paused</code></td><td>off</td><td>Draw one frame and stop.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ================= MANNERS ================= -->
+  <section class="sec wrap" id="manners" aria-labelledby="h-manners">
+    <div class="sec-h">
+      <p class="num">04</p>
+      <h2 id="h-manners">Polite by <em>default.</em></h2>
+      <p class="sec-lede">A background should never be the reason a page feels slow.</p>
+    </div>
+    <div class="manners">
+      <ul class="rules">
+        <li><b>Stops when you scroll away.</b><span>An IntersectionObserver pauses drawing the moment the element leaves the screen, and when the tab is hidden.</span></li>
+        <li><b>Holds still for people who ask.</b><span>With reduced motion turned on, it draws a single frame and waits.</span></li>
+        <li><b>Knows its budget.</b><span>Device pixel ratio is capped, soft looks render at half resolution, and no canvas grows past 2.4 million pixels.</span></li>
+        <li><b>Falls back gracefully.</b><span>No WebGL, or a lost context, and the element shows a matching CSS gradient instead of a blank box.</span></li>
+      </ul>
+      <div class="meter" aria-live="off">
+        <p class="meter-h">Live, from this page</p>
+        <div class="meter-row"><span>Hero frames drawn</span><b id="mHero">0</b></div>
+        <div class="meter-row"><span>Hero right now</span><b id="mState">running</b></div>
+        <div class="meter-row"><span>Backgrounds on this page</span><b id="mCount">0</b></div>
+        <div class="meter-row"><span>Drawing at this moment</span><b id="mActive">0</b></div>
+        <p class="meter-note">Scroll the hero out of view and watch its counter stop.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <latar-bg preset="fog" resolution="0.5"></latar-bg>
+  <div class="wrap foot-in">
+    <p class="foot-big">Make the first screen <em>feel alive.</em></p>
+    <div class="foot-meta">
+      <p>Made by <a href="https://github.com/rezaaryam">Reza Arya Maulana</a></p>
+      <p><a href="https://github.com/rezaaryam/latar">Source</a> · MIT License</p>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="latar.js"></script>
+<script src="site.js"></script>
+</body>
+</html>
